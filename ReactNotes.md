@@ -2,6 +2,9 @@
 
 ## Lifecycle Methods
 
+
+
+
 ### `componentWillMount`
 [Source](https://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
 > Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call `setState` within this method, `render()` will see the updated state and will be executed only once despite the state change.
@@ -14,6 +17,14 @@ var Something = React.createClass({
 	}
 });
 ```
+
+#### Notes
+* `componentWillMount` is automatically fired by React as the component is added to the DOM
+	* Will be fired immediately **BEFORE** the component is rendered to the screen
+* No Access to `refs` or DOM
+
+
+
 
 ### `componentDidMount`
 [Source](https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
@@ -30,6 +41,34 @@ var Something = React.createClass({
 });
 ```
 
+#### Notes
+* `componentDidMount` is automatically fired by React **AFTER** the component is added to the DOM
+
+
+
+
+### `compontentWillReceiveProps`
+[Source](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
+> Invoked when a component is receiving new props. This method is not called for the initial render.
+> 
+> Use this as an opportunity to react to a prop transition before `render()` is called by updating the state using `this.setState()`. The old props can be accessed via `this.props`. Calling `this.setState()` within this function will not trigger an additional render.
+---
+> **Note:**
+> One common mistake is for code executed during this lifecycle method to assume that props have changed. To understand why this is invalid, read [A implies B does not imply B implies A](https://facebook.github.io/react/blog/2016/01/08/A-implies-B-does-not-imply-B-implies-A.html)
+> 
+> There is no analogous method `componentWillReceiveState`. An incoming prop transition may cause a state change, but the opposite is not true. If you need to perform operations in response to a state change, use componentWillUpdate.
+
+#### Example
+```javascript
+var Something = React.createClass({
+	componentWillReceiveProps: function (nextProps) {
+		...code here...
+	}
+});
+```
+ 
+
+
 ### `componentDidUpdate`
 [Source](https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
 > Invoked immediately after the component's updates are flushed to the DOM. This method is not called for the initial render.
@@ -39,11 +78,39 @@ var Something = React.createClass({
 #### Example
 ```javascript
 var Something = React.createClass({
-	componentDidUpdate: function () {
+	componentDidUpdate: function (prevProps, prevState) {
 		...code here...
 	}
 });
 ```
+
+#### Notes
+* Fired immediately following an update to the application
+	* i.e. to the props or the state
+
+
+
+
+### `componentWillUpdate`
+[Source](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
+> Invoked immediately before rendering when new props or state are being received. This method is not called for the initial render.
+> 
+> Use this as an opportunity to perform preparation before an update occurs.
+
+#### Example
+```javascript
+var Something = React.createClass({
+	componentWillUpdate: function (nextProps, nextState) {
+		...code here...
+	}
+});
+```
+
+#### Notes
+* Gives the ability to do a function on the next props and next state
+
+
+
 
 ### `componentWillUnmount`
 [Source](https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
@@ -55,7 +122,16 @@ var Something = React.createClass({
 ```javascript
 var Something = React.createClass({
 	componentWillUnmount: function () {
-		...code here...
+		...some code example here...
+		clearInterval(this.timer);
+		this.timer = underfined;
+		...end example...
 	}
 });
 ```
+#### Example Uses
+* In a timer application, clear the timer interval see code example above
+
+#### Notes
+* `componentWillUnmount` is automatically fired by React right before the component is removed from the DOM
+
