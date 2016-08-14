@@ -52,6 +52,7 @@ var Something = React.createClass({
 > Invoked when a component is receiving new props. This method is not called for the initial render.
 > 
 > Use this as an opportunity to react to a prop transition before `render()` is called by updating the state using `this.setState()`. The old props can be accessed via `this.props`. Calling `this.setState()` within this function will not trigger an additional render.
+
 ---
 > **Note:**
 > One common mistake is for code executed during this lifecycle method to assume that props have changed. To understand why this is invalid, read [A implies B does not imply B implies A](https://facebook.github.io/react/blog/2016/01/08/A-implies-B-does-not-imply-B-implies-A.html)
