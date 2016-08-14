@@ -15,7 +15,7 @@ var Something = React.createClass({
 });
 ```
 
-### componentDidMount
+### `componentDidMount`
 [Source](https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
 > Invoked once, only on the client (not on the server), immediately after the initial rendering occurs. At this point in the lifecycle, you can access any refs to your children (e.g., to access the underlying DOM representation). The `componentDidMount()` method of child components is invoked before that of parent components.
 > 
