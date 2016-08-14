@@ -2,7 +2,7 @@
 
 ## Lifecycle Methods
 
-### componentWillMount
+### `componentWillMount`
 [Source](https://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
 > Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call `setState` within this method, `render()` will see the updated state and will be executed only once despite the state change.
 
@@ -30,7 +30,7 @@ var Something = React.createClass({
 });
 ```
 
-### componentDidUpdate
+### `componentDidUpdate`
 [Source](https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
 > Invoked immediately after the component's updates are flushed to the DOM. This method is not called for the initial render.
 > 
@@ -45,7 +45,7 @@ var Something = React.createClass({
 });
 ```
 
-### componentWillUnmount
+### `componentWillUnmount`
 [Source](https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
 > Invoked immediately before a component is unmounted from the DOM.
 > 
