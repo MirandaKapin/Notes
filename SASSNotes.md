@@ -5,9 +5,9 @@
 ### border-radius
 ``` sass
 @mixin border-radius($radius) {
-      -webkit-border-radius: $radius;
-         -moz-border-radius: $radius;
-              border-radius: $radius;
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
 }
 ```
 
