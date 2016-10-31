@@ -27,4 +27,4 @@ firebase.initializeApp(config);
 Returns a Reference to the Query's location.
 
 #### `firebase.database().ref()`
-The parent location of a Reference.
+Returns the parent location of a Reference.
